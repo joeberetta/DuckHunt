@@ -137,7 +137,7 @@ class Game {
 }
 // Adding ducks quacking while playing
 var ducks = document.createElement("audio");
-ducks.src = "/sound/ducks.ogg";
+ducks.src = "../sound/ducks.ogg";
 ducks.volume = 0.0045;
 ducks.loop = true;
 function quack() {
