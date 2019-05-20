@@ -1,7 +1,7 @@
 function preloadCache(array, waitForOtherResources, timeout) {
-	var loaded = false, list = preloadImages.list, imgs = array.slice(0), t = timeout || 15 * 1000, timer;
-	if (!preloadImages.list) {
-		preloadImages.list = [];
+	var loaded = false, list = preloadCache.list, imgs = array.slice(0), t = timeout || 15 * 1000, timer;
+	if (!preloadCache.list) {
+		preloadCache.list = [];
 	}
 	if (!waitForOtherResources || document.readyState === 'complete') {
 		loadNow();
