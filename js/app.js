@@ -1,7 +1,7 @@
-function preloadCache(array, waitForOtherResources, timeout) {
-	var loaded = false, list = preloadCache.list, imgs = array.slice(0), t = timeout || 15 * 1000, timer;
-	if (!preloadCache.list) {
-		preloadCache.list = [];
+function preloadImages(array, waitForOtherResources, timeout) {
+	var loaded = false, list = preloadImages.list, imgs = array.slice(0), t = timeout || 15 * 1000, timer;
+	if (!preloadImages.list) {
+		preloadImages.list = [];
 	}
 	if (!waitForOtherResources || document.readyState === 'complete') {
 		loadNow();
@@ -34,8 +34,7 @@ function preloadCache(array, waitForOtherResources, timeout) {
 		}
 	}
 }
-preloadCache(["img/bg.jpg", "img/life++.svg", "img/life--.svg", "style/duckhunt.woff"], true);
-
+preloadImages(["img/bg.jpg", "img/life++.svg", "img/life--.svg", "style/duckhunt.woff"], true);
 
 class Duck {
 	constructor(width = 60, height = 75) {
