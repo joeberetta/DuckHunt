@@ -12,7 +12,7 @@ html, body {
 	font-family: "Duck Hunt";
 }
 body {
-	background-image: url('./DuckHunt/img/bg.jpg');
+	background-image: url('.//img/bg.jpg');
 	background-size: cover;
 	background-position: top center;
 }
