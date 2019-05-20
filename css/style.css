@@ -12,7 +12,7 @@ html, body {
 	font-family: "Duck Hunt";
 }
 body {
-	background-image: url('/img/bg.jpg');
+	background-image: url('./img/bg.jpg');
 	background-size: cover;
 	background-position: top center;
 }
@@ -53,7 +53,7 @@ body {
 .life {
 	width: 1rem;
 	height: 1rem;
-	background: url('/img/life++.svg');
+	background: url('./img/life++.svg');
 }
 .life:not(:first-child) { margin-left: .25rem; }
 #play {
