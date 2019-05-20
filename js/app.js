@@ -100,7 +100,7 @@ class Game {
 		}, 1000)
 		this.gameTimer = timer;
 		for (let i = 0; i < document.getElementsByClassName('life').length; i++)
-			document.getElementsByClassName('life')[i].style.background = "url('/img/life++.svg')";
+			document.getElementsByClassName('life')[i].style.background = "url('../img/life++.svg')";
 			quack();
 	}
 	gameOver() {
@@ -124,7 +124,7 @@ class Game {
 		quack();
 	}
 	minusLife() {
-		document.getElementsByClassName('life')[this.life].style.background = "url('/img/life--.svg')"
+		document.getElementsByClassName('life')[this.life].style.background = "url('../img/life--.svg')"
 		if (this.life == 0)
 			this.gameOver()
 		else
