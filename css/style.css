@@ -45,6 +45,12 @@ body {
 	left: 0;
 	background-size: 100%;
 }
+.duck-l {
+	background-image: url('../img/duck-l.gif')
+}
+.duck-r {
+	background-image: url('../img/duck-r.gif')
+}
 .duck input { display: none; }
 #wrapper {
 	padding: 0.5rem;
