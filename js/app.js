@@ -1,13 +1,12 @@
 class Duck {
 	constructor(width = 60, height = 75) {
 		this.width = (window.innerWidth < 1024) ? width : 1.5 * width,
-			this.height = (window.innerWidth < 1024) ? height : 1.5 * height,
-		this.top = Math.floor(Math.random() * screen.availHeight * 0.6 + screen.availHeight * 0.1),
+		this.height = (window.innerWidth < 1024) ? height : 1.5 * height,
 		this.direction = Math.floor(Math.random() * 1 - 0.5),
+		this.top = Math.floor(Math.random() * screen.availHeight * 0.6 + screen.availHeight * 0.1),
 		this.left = (this.direction < 0) ? (this.left = window.innerWidth + 16) : (this.left = 0 - (this.width + 16)),
 		this.speed = (Math.random() * 1 + 0.5),
 		this.FlyAnimation,
-		this.died = false,
 		this.Fly();
 	}
 	initDuck() {
@@ -76,7 +75,7 @@ class Duck {
 		clearInterval(this.FlyAnimation)
 	}
 }
-/////////////////////////////////////////////////////////////////////////////////////////////////
+
 class Game {
 	constructor(bestScore = localStorage.getItem("bestScore"), lifeCount = 2) {
 		this.bestScore = (bestScore != null || bestScore != undefined) ? bestScore : 0,
@@ -84,6 +83,7 @@ class Game {
 		this.life = lifeCount,
 		this.gameTimer,
 		this.AllDucks = [],
+		this.sound,
 		this.start()
 	}
 	start() {
@@ -98,7 +98,12 @@ class Game {
 		this.gameTimer = timer;
 		for (let i = 0; i < document.getElementsByClassName('life').length; i++)
 			document.getElementsByClassName('life')[i].style.background = "url('img/life++.svg')";
-			quack_on();
+			
+		this.sound = document.createElement("audio");
+		this.sound.volume = 0.25;
+		this.sound.loop = true;
+		this.sound.src = 'sound/ducks.ogg';
+		this.playSound();
 	}
 	gameOver() {
 		if (this.bestScore < this.score)
@@ -118,7 +123,7 @@ class Game {
 		play.style.display = 'block';
 		stats.style.display = 'none';
 
-		quack_off();
+		this.stopSound();
 	}
 	minusLife() {
 		document.getElementsByClassName('life')[this.life].style.background = "url('img/life--.svg')"
@@ -131,32 +136,17 @@ class Game {
 		this.score++
 		document.getElementById('score').innerHTML = this.score;
 	}
+	playSound() {
+		this.sound.play();
+	}
+	stopSound() {
+		this.sound.pause();		
+	}
 }
-// Adding ducks quacking while playing
-var ducks = document.createElement("audio");
-ducks.src = "sound/ducks.ogg";
-ducks.volume = 0.007;
-ducks.loop = true;
-function quack_on() { ducks.play() }
-function quack_off() { ducks.remove() }
 // Play button
 let play = document.getElementById('play'), stats = document.getElementById('wrapper');
 play.onclick = () => {
 	newGame = new Game();
-
 	play.style.display = 'none';
 	stats.style.display = 'flex';
-}
-
-window.onclick = function openFullscreen() {
-	elem = window;
-		if (elem.requestFullscreen) {
-			elem.requestFullscreen();
-		} else if (elem.mozRequestFullScreen) { /* Firefox */
-			elem.mozRequestFullScreen();
-		} else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-			elem.webkitRequestFullscreen();
-		} else if (elem.msRequestFullscreen) { /* IE/Edge */
-			elem.msRequestFullscreen();
-		}
 }
